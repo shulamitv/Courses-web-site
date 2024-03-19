@@ -1,0 +1,17 @@
+.icon-small {
+    width: 50px;
+    height: auto;
+}
+.card {
+    transition: box-shadow 0.5s ease; /* Slow down the transition effect */
+    box-shadow: 0 2px 6px rgba(238, 238, 240, 0.1); /* Initial shadow */
+  }
+  
+  .card:hover {
+    box-shadow: 0 10px 20px rgba(0, 6, 11, 0.9); /* Increase shadow intensity on hover */
+  }
+  
+  
+  
+  
+  

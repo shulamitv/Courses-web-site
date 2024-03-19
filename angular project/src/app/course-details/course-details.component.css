@@ -1,0 +1,17 @@
+.icon-small {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Automatically adjust the height */
+}
+.syllabus-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.syllabus-list {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.syllabus-list li {
+    margin-bottom: 5px;
+}

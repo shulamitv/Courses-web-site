@@ -1,0 +1,80 @@
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="course-form">
+  <div class="form-group">
+    <label for="courseName">Name:</label>
+    <input type="text" formControlName="courseName" id="courseName" class="form-control">
+    <div
+      *ngIf="courseForm.get('courseName')?.invalid && (courseForm.get('courseName')?.dirty || courseForm.get('courseName')?.touched)">
+      <div *ngIf="courseForm.get('courseName')?.errors?.['required']" class="text-danger">Name is required.</div>
+      <div *ngIf="courseForm.get('courseName')?.errors?.['minlength']" class="text-danger">Name is minimum 3 letters.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <label for="category">Category:</label>
+    <select id="category" formControlName="category">
+      <option *ngFor="let category of categories" [ngValue]="category">{{ category.categoryName }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="numLessons">Number of Lessons:</label>
+    <input type="number" formControlName="numLessons" id="numLessons" class="form-control">
+    <div
+      *ngIf="courseForm.get('numLessons')?.invalid && (courseForm.get('numLessons')?.dirty || courseForm.get('numLessons')?.touched)">
+      <div *ngIf="courseForm.get('numLessons')?.errors?.['required']" class="text-danger">Number of Lessons is required.
+      </div>
+      <div *ngIf="courseForm.get('courseName')?.errors?.['minlength']" class="text-danger">Name is minimum 2 Lessons.
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="startDate">Start Date:</label>
+    <input type="date" formControlName="startDate" id="startDate" class="form-control">
+    <div
+      *ngIf="courseForm.get('startDate')?.invalid && (courseForm.get('startDate')?.dirty || courseForm.get('startDate')?.touched)">
+      <div *ngIf="courseForm.get('startDate')?.errors?.['required']" class="text-danger">Start Date is required.</div>
+    </div>
+  </div>
+
+
+  <div formArrayName="syllabus" class="form-group">
+    <label for="Silavos">syllabus:</label>
+    <div *ngFor="let silavo of syllabus.controls; let i=index" class="syllabus-group">
+      <input type="text" [formControlName]="i" (input)="onChangeSyllabus(i)" class="form-control">
+      <button type="button" *ngIf="i !== 0" (click)="removeSyllabus(i)" class="btn btn-danger">Remove</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="learningMode">Learning Mode:</label>
+    <select formControlName="learningMode" id="learningMode" class="form-control">
+      <option value="1">Frontal</option>
+      <option value="2">Zoom</option>
+    </select>
+    <div
+      *ngIf="courseForm.get('learningMode')?.invalid && (courseForm.get('learningMode')?.dirty || courseForm.get('learningMode')?.touched)">
+      <div *ngIf="courseForm.get('learningMode')?.errors?.['required']" class="text-danger">Learning Mode is required.
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="lecturerId">Lecturer ID:</label>
+    <input type="number" formControlName="lecturerId" id="lecturerId" class="form-control">
+    <div
+      *ngIf="courseForm.get('lecturerId')?.invalid && (courseForm.get('lecturerId')?.dirty || courseForm.get('lecturerId')?.touched)">
+      <div *ngIf="courseForm.get('lecturerId')?.errors?.['required']" class="text-danger">Lecturer ID is required.</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="picture">Picture:</label>
+    <input type="text" formControlName="picture" id="picture" class="form-control">
+    <div
+      *ngIf="courseForm.get('picture')?.invalid && (courseForm.get('picture')?.dirty || courseForm.get('picture')?.touched)">
+      <div *ngIf="courseForm.get('picture')?.errors?.['required']" class="text-danger">Picture is required.</div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,0 +1,18 @@
+
+<form [formGroup]="addForm" class="mt-4">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" autocomplete="name" class="form-control" #name formControlName="name">
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control" #password formControlName="password">
+    </div>
+    <button appHighLight class="btn btn-primary" (click)="save()" [disabled]="!addForm.valid">Save</button>
+    <a (click)="toggleCourseNameInput()">Login as Lecturer</a>
+    <div class="form-group" *ngIf="showCourseNameInput">
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" name="courseName" class="form-control" #courseName formControlName="courseName">
+    </div>
+</form>
+

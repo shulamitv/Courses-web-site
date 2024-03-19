@@ -1,0 +1,40 @@
+
+<div class="container">
+    <div class="col-md-8 offset-md-2">
+        <div class="card mt-5">
+            <div class="card-header">
+                Course Details
+            </div>
+            <div class="card-body">
+                <div *ngIf="course">
+                    <h1 class="card-title">{{ course.courseName }}</h1>
+                    <p class="card-text">Category: {{ course.category?.categoryName?.toString() }}</p>
+                    <img [src]="course.category?.routeToIcon" class="img-fluid" style="max-width: 100px; max-height: 100px;" />
+                    <p class="card-text">Number of Lessons: {{ course.numLessons }}</p>
+                    <p class="card-text">Start Date: {{ course.startDate| date: "dd/MM/yyyy"}}</p>
+                    <p class="card-text">Learning Mode: {{ course.learningMode }}</p>
+                    <img [src]="course.learningMode | icon " class="icon-small">
+                   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="card-text">Lecturer ID: {{ course.lecturerId }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="syllabus-header">Syllabus:</p>
+                            <ul class="syllabus-list">
+                                <ng-container *ngFor="let silavo of course.syllabus">
+                                    <li>{{ silavo }}</li>
+                                </ng-container>
+                            </ul>
+                        </div>
+                    </div>
+                    <img *ngIf="course.picture" class="img-fluid" [src]="course.picture" alt="Course Image">
+                </div>
+                <div *ngIf="!course">
+                    <p>This course was not found...</p>
+                </div>
+                <button (click)="editCourse(course)" [disabled]="!isLecturer()">Edit Course</button>
+            </div>
+        </div>
+    </div>
+</div>
